@@ -15,6 +15,7 @@ def create_contact():
     try:
         data = request.json
 
+        # Validatations
         required_fields = ["name", "role", "description", "gender"]
         for field in required_fields:
             if field not in data:
