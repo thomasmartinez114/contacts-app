@@ -9,7 +9,7 @@ def get_contacts():
   result = [contact.to_json() for contact in contacts]
   return jsonify(result)
 
-# Create a friend
+# Create a contact
 @app.route("/api/contacts",methods=["POST"])
 def create_contact():
   try:
