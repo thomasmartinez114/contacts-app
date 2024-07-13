@@ -5,3 +5,5 @@ Contacts App
 - Frontend React
   - npm create vite@latest
   - npm run dev
+  - Chakra
+    - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion

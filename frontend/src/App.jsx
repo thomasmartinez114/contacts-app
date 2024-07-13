@@ -1,8 +1,13 @@
+import { Button } from '@chakra-ui/react'
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <Stack minH={"100vh"}>
+      <Navbar />
+
+      <Container maxW={"1200px"} my={4}>
+
+      </Container>
+    </Stack>
   );
 }
 
