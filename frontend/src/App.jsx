@@ -1,5 +1,6 @@
 import { Container, Stack, Text } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
+import ContactGrid from './components/ContactGrid';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             My Contacts List
           </Text>
         </Text>
+        <ContactGrid />
       </Container>
     </Stack>
   );
