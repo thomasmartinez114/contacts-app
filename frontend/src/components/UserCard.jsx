@@ -7,6 +7,7 @@ import {
   Text,
   Box,
   IconButton,
+  CardBody,
 } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
 
@@ -35,6 +36,9 @@ const UserCard = ({ user }) => {
           </Flex>
         </Flex>
       </CardHeader>
+      <CardBody>
+        <Text>{user.description}</Text>
+      </CardBody>
     </Card>
   );
 };
