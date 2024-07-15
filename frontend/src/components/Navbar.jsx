@@ -1,6 +1,16 @@
-import { Container, Box, Flex, Text } from '@chakra-ui/react';
+import {
+  Container,
+  Box,
+  Flex,
+  Text,
+  Button,
+  useColorMode,
+} from '@chakra-ui/react';
+import { IoMoon } from 'react-icons/io5';
+import { LuSun } from 'react-icons/lu';
 
 const Navbar = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Container maxW={'900px'}>
       <Box px={4} my={4} borderRadius={5} bg={'gray.700'}>
@@ -20,7 +30,18 @@ const Navbar = () => {
           </Flex>
 
           {/* Right side */}
-          <Flex></Flex>
+          <Flex gap={3} alignItems={'center'}>
+            <Text
+              fontSize={'lg'}
+              fontWeight={500}
+              display={{ base: 'none', md: 'block' }}
+            >
+              BFFship
+            </Text>
+            <Button onClick={toggleColorMode}>
+              {colorMode === 'light' ? <IoMoon /> : <LuSun size={20} />}
+            </Button>
+          </Flex>
         </Flex>
       </Box>
     </Container>
