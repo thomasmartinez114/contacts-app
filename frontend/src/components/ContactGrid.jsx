@@ -1,7 +1,7 @@
 import { Grid } from '@chakra-ui/react';
 import ContactCard from './ContactCard';
 import { useEffect, useState } from 'react';
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Flex, Spinner, Text } from '@chakra-ui/react';
 
 const ContactGrid = ({ contacts, setContacts }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,9 +47,22 @@ const ContactGrid = ({ contacts, setContacts }) => {
         ))}
       </Grid>
 
+      {/* If loading */}
       {isLoading && (
         <Flex justifiyContent={'center'}>
           <Spinner size={'xl'} />
+        </Flex>
+      )}
+
+      {/* if isn't loading */}
+      {!isLoading && contacts.length === 0 && (
+        <Flex justifyContent={'center'}>
+          <Text fontSize={'xl'}>
+            <Text as={'span'} fontSize={'2xl'} fontWeight={'bold'} mr={2}>
+              No Contacts Available.
+            </Text>
+            Please try again.
+          </Text>
         </Flex>
       )}
     </>
