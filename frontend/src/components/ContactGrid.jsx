@@ -1,6 +1,7 @@
 import { Grid } from '@chakra-ui/react';
 import ContactCard from './ContactCard';
 import { useEffect, useState } from 'react';
+import { Flex, Spinner } from '@chakra-ui/react';
 
 const ContactGrid = ({ contacts, setContacts }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,6 +46,12 @@ const ContactGrid = ({ contacts, setContacts }) => {
           />
         ))}
       </Grid>
+
+      {isLoading && (
+        <Flex justifiyContent={'center'}>
+          <Spinner size={'xl'} />
+        </Flex>
+      )}
     </>
   );
 };
