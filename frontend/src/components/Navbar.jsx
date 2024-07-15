@@ -29,22 +29,19 @@ const Navbar = () => {
             gap={3}
             display={{ base: 'none', sm: 'flex' }}
           >
-            <img src='/react.png' alt='react logo' width={50} height={50} />
-            <Text fontSize={'40px'}>+</Text>
-            <img src='/python.png' alt='python logo' width={50} height={40} />
-            <Text fontSize={'40px'}>=</Text>
-            <img src='/explode.png' alt='explode logo' width={50} height={50} />
+            
+            <Text fontSize={'40px'}>DevContacts</Text>
           </Flex>
 
           {/* Right side */}
           <Flex gap={3} alignItems={'center'}>
-            <Text
+            {/* <Text
               fontSize={'lg'}
               fontWeight={500}
               display={{ base: 'none', md: 'block' }}
             >
               BFFship
-            </Text>
+            </Text> */}
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <IoMoon /> : <LuSun size={20} />}
             </Button>
