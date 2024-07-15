@@ -1,11 +1,13 @@
 import { Container, Stack, Text } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
 import ContactGrid from './components/ContactGrid';
+import { useState } from 'react';
 
 function App() {
+  const [contacts, setContacts] = useState([]);
   return (
     <Stack minH={'100vh'}>
-      <Navbar />
+      <Navbar setContacts={setContacts} />
       <Container maxW={'1200px'} my={4}>
         <Text
           fontSize={{ base: '3xl', md: '50' }}
@@ -23,7 +25,7 @@ function App() {
             My Contacts List
           </Text>
         </Text>
-        <ContactGrid />
+        <ContactGrid contacts={contacts} setContacts={setContacts} />
       </Container>
     </Stack>
   );

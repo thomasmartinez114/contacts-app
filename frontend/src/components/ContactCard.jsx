@@ -12,7 +12,7 @@ import {
 import { BiTrash } from 'react-icons/bi';
 import EditModal from './EditModal';
 
-const UserCard = ({ user }) => {
+const ContactCard = ({ contact }) => {
   return (
     <Card>
       <CardHeader>
@@ -21,8 +21,8 @@ const UserCard = ({ user }) => {
             <Avatar src='https://avatar.iran.liara.run/public' />
 
             <Box>
-              <Heading size='sm'>{user.name}</Heading>
-              <Text>{user.role}</Text>
+              <Heading size='sm'>{contact.name}</Heading>
+              <Text>{contact.role}</Text>
             </Box>
           </Flex>
           <Flex>
@@ -38,10 +38,10 @@ const UserCard = ({ user }) => {
         </Flex>
       </CardHeader>
       <CardBody>
-        <Text>{user.description}</Text>
+        <Text>{contact.description}</Text>
       </CardBody>
     </Card>
   );
 };
 
-export default UserCard;
+export default ContactCard;
