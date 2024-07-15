@@ -10,6 +10,7 @@ const ContactGrid = () => {
         md: 'repeat(2, 1fr)', // show 2 on mediums
         lg: 'repeat(3, 1fr)', // show 3 on large
       }}
+      gap={4}
     >
       {USERS.map(user => (
         <UserCard key={user.id} user={user} />
