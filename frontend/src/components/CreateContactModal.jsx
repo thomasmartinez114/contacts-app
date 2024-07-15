@@ -12,6 +12,10 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  Textarea,
+  RadioGroup,
+  Radio,
+  ModalFooter,
 } from '@chakra-ui/react';
 import { BiAddToQueue } from 'react-icons/bi';
 
@@ -32,12 +36,44 @@ const ContactGrid = () => {
 
           <ModalBody pb={6}>
             <Flex alignItems={'center'} gap={4}>
+              {/* Full Name */}
               <FormControl>
                 <FormLabel>Full Name</FormLabel>
                 <Input placeholder='John Doe' />
               </FormControl>
+
+              {/* Role */}
+              <FormControl>
+                <FormLabel>Role</FormLabel>
+                <Input placeholder='Software Engineer' />
+              </FormControl>
             </Flex>
+
+            {/* Description */}
+            <FormControl mt={4}>
+              <FormLabel>Description</FormLabel>
+              <Textarea
+                resize={'none'}
+                overflowY={'hidden'}
+                placeholder="He's a software engineer who loves to code and build things."
+              />
+            </FormControl>
+
+            {/* Gender Selection */}
+            <RadioGroup mt={4}>
+              <Flex gap={5}>
+                <Radio value='male'>Male</Radio>
+                <Radio value='female'>Female</Radio>
+              </Flex>
+            </RadioGroup>
           </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
