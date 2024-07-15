@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
+import CreateContactModal from './CreateContactModal';
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -47,6 +48,7 @@ const Navbar = () => {
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <IoMoon /> : <LuSun size={20} />}
             </Button>
+            <CreateContactModal />
           </Flex>
         </Flex>
       </Box>
