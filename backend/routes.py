@@ -42,7 +42,7 @@ def create_contact():
         db.session.add(new_contact)
         db.session.commit()
 
-        return jsonify({"msg": "contact created successfully"}), 201
+        return jsonify(new_contact.to_json()), 201
 
     except Exception as e:
         db.session.rollback()

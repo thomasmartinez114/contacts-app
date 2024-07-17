@@ -11,7 +11,7 @@ import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
 import CreateContactModal from './CreateContactModal';
 
-const Navbar = () => {
+const Navbar = ({ setContacts }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Container maxW={'900px'}>
@@ -29,7 +29,6 @@ const Navbar = () => {
             gap={3}
             display={{ base: 'none', sm: 'flex' }}
           >
-            
             <Text fontSize={'40px'}>DevContacts</Text>
           </Flex>
 
@@ -45,7 +44,7 @@ const Navbar = () => {
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <IoMoon /> : <LuSun size={20} />}
             </Button>
-            <CreateContactModal />
+            <CreateContactModal setContacts={setContacts} />
           </Flex>
         </Flex>
       </Box>
