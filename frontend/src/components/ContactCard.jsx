@@ -18,7 +18,7 @@ const ContactCard = ({ contact }) => {
       <CardHeader>
         <Flex gap={4}>
           <Flex flex={'1'} gap={'4'} alignItems={'center'}>
-            <Avatar src='https://avatar.iran.liara.run/public' />
+            <Avatar src={contact.imgUrl} />
 
             <Box>
               <Heading size='sm'>{contact.name}</Heading>
