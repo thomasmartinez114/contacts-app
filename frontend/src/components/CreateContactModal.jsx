@@ -93,7 +93,7 @@ const CreateContactModal = ({ setContacts }) => {
                 <FormControl>
                   <FormLabel>Full Name</FormLabel>
                   <Input
-                    placeholder='John Doe'
+                    placeholder='Dev Tommie'
                     value={inputs.name}
                     onChange={e =>
                       setInputs({ ...inputs, name: e.target.value })
