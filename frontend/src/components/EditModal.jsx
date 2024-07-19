@@ -14,11 +14,60 @@ import {
   ModalOverlay,
   Textarea,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { BiEditAlt } from 'react-icons/bi';
+import { useState } from 'react';
+import { BASE_URL } from '../App';
 
-function EditModal() {
+function EditModal({ setContacts, contact }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputs, setInputs] = useState({
+    name: contact.name,
+    role: contact.role,
+    description: contact.description,
+  });
+  const toast = useToast();
+
+  const handleEditContact = async e => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const res = await fetch(BASE_URL + '/contacts/' + contact.id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputs),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+      setContacts(prevContacts =>
+        prevContacts.map(u => (u.id === contact.id ? data : u))
+      );
+      toast({
+        status: 'success',
+        title: 'Success',
+        description: 'Contact updated successfully',
+        duration: 2000,
+        position: 'top-center',
+      });
+      onClose();
+    } catch (error) {
+      toast({
+        status: 'error',
+        title: 'An error occurred',
+        description: error.message,
+        duration: 4000,
+        position: 'top-center',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -33,39 +82,64 @@ function EditModal() {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit Contact</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <Flex alignItems={'center'} gap={4}>
-              <FormControl>
-                <FormLabel>Full Name</FormLabel>
-                <Input placeholder='John Doe' />
-              </FormControl>
+        <form onSubmit={handleEditContact}>
+          <ModalContent>
+            <ModalHeader>Edit Contact</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <Flex alignItems={'center'} gap={4}>
+                <FormControl>
+                  <FormLabel>Full Name</FormLabel>
+                  <Input
+                    placeholder='John Doe'
+                    value={inputs.name}
+                    onChange={e =>
+                      setInputs(prev => ({ ...prev, name: e.target.value }))
+                    }
+                  />
+                </FormControl>
 
-              <FormControl>
-                <FormLabel>Role</FormLabel>
-                <Input placeholder='Software Engineer' />
+                <FormControl>
+                  <FormLabel>Role</FormLabel>
+                  <Input
+                    placeholder='Software Engineer'
+                    value={inputs.role}
+                    onChange={e =>
+                      setInputs(prev => ({ ...prev, role: e.target.value }))
+                    }
+                  />
+                </FormControl>
+              </Flex>
+              <FormControl mt={4}>
+                <FormLabel>Description</FormLabel>
+                <Textarea
+                  resize={'none'}
+                  overflowY={'hidden'}
+                  placeholder="He's a software engineer who loves to code and build things."
+                  value={inputs.description}
+                  onChange={e =>
+                    setInputs(prev => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
+                  }
+                />
               </FormControl>
-            </Flex>
-            <FormControl mt={4}>
-              <FormLabel>Description</FormLabel>
-              <Textarea
-                resize={'none'}
-                overflowY={'hidden'}
-                placeholder="He's a software engineer who loves to code and build things.
-              "
-              />
-            </FormControl>
-          </ModalBody>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
-              Update
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
-        </ModalContent>
+            <ModalFooter>
+              <Button
+                colorScheme='blue'
+                mr={3}
+                type='submit'
+                isLoading={isLoading}
+              >
+                Update
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </form>
       </Modal>
     </>
   );

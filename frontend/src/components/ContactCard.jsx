@@ -59,7 +59,7 @@ const ContactCard = ({ contact, setContacts }) => {
             </Box>
           </Flex>
           <Flex>
-            <EditModal />
+            <EditModal contact={contact} setContacts={setContacts}/>
             <IconButton
               variant='ghost'
               colorScheme='red'
