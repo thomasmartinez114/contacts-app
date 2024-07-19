@@ -2,6 +2,7 @@ import { Grid } from '@chakra-ui/react';
 import ContactCard from './ContactCard';
 import { useEffect, useState } from 'react';
 import { Flex, Spinner, Text } from '@chakra-ui/react';
+import { BASE_URL } from '../App';
 
 const ContactGrid = ({ contacts, setContacts }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,7 +10,7 @@ const ContactGrid = ({ contacts, setContacts }) => {
   useEffect(() => {
     const getContacts = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:5000/api/contacts');
+        const res = await fetch(BASE_URL + '/contacts');
         const data = await res.json();
         // console.log(data);
 
