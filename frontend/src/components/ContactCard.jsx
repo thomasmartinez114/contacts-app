@@ -8,11 +8,44 @@ import {
   Box,
   IconButton,
   CardBody,
+  useToast,
 } from '@chakra-ui/react';
 import { BiTrash } from 'react-icons/bi';
 import EditModal from './EditModal';
+import { BASE_URL } from '../App';
 
-const ContactCard = ({ contact }) => {
+const ContactCard = ({ contact, setContacts }) => {
+  const toast = useToast();
+  const handleDeleteContact = async () => {
+    try {
+      const res = await fetch(BASE_URL + '/contacts/' + contact.id, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+      setContacts(prevContacts =>
+        prevContacts.filter(u => u.id !== contact.id)
+      );
+      toast({
+        title: 'Success',
+        status: 'success',
+        description: 'Contact deleted successfully',
+        duration: 2000,
+        position: 'top-center',
+      });
+    } catch (error) {
+      toast({
+        title: 'An error occurred',
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+        position: 'top-center',
+      });
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -33,6 +66,7 @@ const ContactCard = ({ contact }) => {
               size={'sm'}
               aria-label='See Menu'
               icon={<BiTrash size={20} />}
+              onClick={handleDeleteContact}
             />
           </Flex>
         </Flex>
