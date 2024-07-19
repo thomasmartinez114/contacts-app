@@ -56,6 +56,12 @@ const CreateContactModal = ({ setContacts }) => {
       });
       onClose();
       setContacts(prevUsers => [...prevUsers, data]); // show new contact without refreshing page
+      setInputs({
+        name: '',
+        role: '',
+        description: '',
+        gender: '',
+      }); // clear the inputs
     } catch (error) {
       toast({
         status: 'error',
@@ -65,12 +71,6 @@ const CreateContactModal = ({ setContacts }) => {
       });
     } finally {
       setIsLoading(false);
-      setInputs({
-        name: '',
-        role: '',
-        description: '',
-        gender: '',
-      }); // clear the inputs
     }
   };
 
